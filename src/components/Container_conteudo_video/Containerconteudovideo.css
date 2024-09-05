@@ -1,0 +1,285 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.Containerconteudovideo_container{
+    position: relative;
+    background-image: url(../../../public/assets/art/bg10-editado.jpg);
+    background-size: cover;
+    background-position: 95% 15%;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed; /* Parallax Effect */
+    background-size: cover;
+    background-position: bottom top;
+
+    width: 100%;
+    height: 50vh;
+}
+
+.Containerconteudovideo_container_conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 180px;
+
+}
+
+.Containerconteudovideo_container_conteudo_titulo{
+    margin-top: 20px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+}
+
+.button-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.button-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+    z-index: 0;
+}
+
+.button-container:hover::before {
+    transform: scale(1.5);
+}
+
+.button-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.Containerconteudovideo_container_conteudo_icone_play {
+    position: relative;
+    z-index: 1;
+    transition: filter 0.3s ease-in-out;
+    fill: #808080; /* Cor de preenchimento inicial */
+}
+
+.button-container:hover .Containerconteudovideo_container_conteudo_icone_play {
+    fill: #4d4d4d; /* Cor de preenchimento no hover */
+    filter: invert(10%); /* Menor inversão de cor */
+}
+
+/* Media queries para responsividade */
+
+@media (min-width: 320px) and (max-width: 350px) {
+
+    .Containerconteudovideo_container{
+        padding-bottom: 20px;
+    }
+
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        padding-top: 10%;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 20px;
+        color: white;
+        font-weight: 500;
+        font-size: 21px;
+        margin: 10%;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+}
+
+@media (min-width: 351px) and (max-width: 380px) {
+
+    .Containerconteudovideo_container{
+        padding-bottom: 20px;
+    }
+
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        padding-top: 30%;
+        padding-bottom: 30px;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 20px;
+        color: white;
+        font-weight: 500;
+        font-size: 21px;
+        margin: 10%;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+}
+
+@media (min-width: 381px) and (max-width: 699px) {
+
+
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        padding-top: 25%;
+        margin: 15%;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 40px;
+        color: white;
+        font-weight: 500;
+        font-size: 21px;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+    
+}
+
+@media (min-width: 700px) and (max-width: 800px){
+
+    
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    
+        padding-top: 20%;
+        margin: 10%;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 40px;
+        color: white;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 40px;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+   
+}
+
+@media (min-width: 801px) and (max-width: 1022px){
+
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 20%;
+        margin: 10%;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 50px;
+        color: white;
+        font-weight: 500;
+        font-size: 35px;
+        line-height: 50px;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+    
+}
+
+
+@media (min-width: 1023px) {
+   
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 10%;
+        margin: 10%;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 40px;
+        color: white;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 50px;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+    
+}
+
+
+@media (min-width: 1300px) {
+
+    .Containerconteudovideo_container_conteudo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 6%;
+        margin: 10%;
+    
+    }
+    
+    .Containerconteudovideo_container_conteudo_titulo{
+        margin-top: 50px;
+        color: white;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 50px;
+    }
+
+    .Containerconteudovideo_container{
+        background-position: center bottom;
+    }
+
+    
+}

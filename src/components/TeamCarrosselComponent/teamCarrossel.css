@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.teamCarrosselContainer{
+    background-color: #F9FAFB;
+    text-align: center;
+    margin: 5% 0;
+}
+
+.CarrosselContainer{
+    display: flex; /* Faz com que os cartões fiquem em linha */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassa os limites do contêiner */
+    justify-content: center; /* Centraliza o conteúdo */
+}
+
+.team-member {
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 10% 0;
+    width: 80% !important;
+  }
+  
+.member-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+  
+h3 {
+    margin: 10px 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+  
+h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #888;
+}
+  
+.social-links a {
+    margin: 0 10px;
+    color: #666;
+    text-decoration: none;
+}
+
+.social-links{
+    margin: 30px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.social-links a:hover {
+    color: #000;
+}
+
+.member-image_imagem{
+    width: 25px;
+    height: 25px;
+}
+
+.member-image_imagem:hover{
+    cursor: pointer;
+}
+  
+  

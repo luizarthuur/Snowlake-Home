@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.carrosselComponentContainer{
+    background-color: #F3F4F7;
+    height: 40vh;
+    display: flex;
+    padding-bottom: 10px;
+}
+
+
+.carrosselContainer_imagem_carrossel{
+    width: 150px;
+    height: 150px;
+}
+
+

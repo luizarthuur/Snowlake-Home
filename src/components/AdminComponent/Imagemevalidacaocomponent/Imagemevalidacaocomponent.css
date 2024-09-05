@@ -1,0 +1,16 @@
+/* Imagemevalidacaocomponent.css */
+
+.image-validation-container {
+    display: flex;
+    flex-direction: column; /* Organiza o input e a mensagem de erro em uma coluna */
+    align-items: center;
+    gap: 90px;
+}
+
+
+.error-message {
+    color: red;
+    margin-top: 12px; /* Espaço entre o input e a mensagem de erro */
+    font-size: 15px; /* Tamanho da fonte da mensagem de erro */
+    font-weight: 500;
+}

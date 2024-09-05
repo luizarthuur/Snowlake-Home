@@ -1,0 +1,90 @@
+/* Transições do dropdown */
+.dropdown-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.dropdown-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.dropdown-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Reset de margens e paddings */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos gerais */
+.container_lista {
+    list-style: none;
+    padding-bottom: 5px;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.container_lista_wrapper {
+    font-weight: 500;
+}
+
+.container_lista:hover {
+    list-style: none;
+    padding-bottom: 5px;
+    font-size: 19px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Container geral */
+.container_lista_wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Título principal */
+.titulo {
+    transition: color 0.1s ease-in-out;
+}
+
+.titulo:hover {
+    cursor: pointer;
+    color: #D3D0BB;
+}
+
+/* Estilos para a lista que aparecerá como dropdown */
+.container_lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1E2228;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Estilos para os itens da lista */
+.ListaItensMenu_item {
+    padding: 8px 12px;
+}
+
+.ListaItensMenu_item a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: block;
+}

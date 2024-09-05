@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --background-padrao: #F9FAFB;
+    --branco: #FFFFFF;
+
+    --fonte-padrao: 'Jost', sans-serif;
+
+    --cor-menu: #1E2228;
+
+    --cor-h2: #404040;
+
+    --cor-p: #606060;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.conteudo_display_conteudo{
+    font-family: var(--fonte-padrao);
+    color: var(--cor-menu);
+
+    background-color: var(--background-padrao);
+}
+
+h2{
+    font-family: var(--fonte-padrao);
+    color: #404040;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+p{
+    color: var(--cor-p);
+    font-size: 16px;
+    font-weight: 400;
+    box-sizing: border-box;
+}   

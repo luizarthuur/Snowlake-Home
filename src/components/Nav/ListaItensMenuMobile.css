@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --branco-padrao: #ffffff;
+
+    --fonte-inicial: 'Jost', sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.ListaItensMenu_titulo{
+    font-family: var(--fonte-inicial);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--branco-padrao);
+
+}
+
+.ListaItensMenu_item{
+    font-family: var(--fonte-inicial);
+    font-weight: 400;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+
+.ListaItensMenu_lista{
+    list-style: none;
+    margin: 0 0 0px 30px;
+}
+
+.container_ListaItensMenu{
+    display: flex;
+    flex-direction: column;
+}
+
+.container_tituloearrow{
+    display: flex;
+    margin-bottom: 16px;
+    margin-top: 12px;
+}
+
+#ListaItensMenu_titulo_arrow{
+    margin-left: 5px;
+    color: var(--branco-padrao);
+}
+
+#ListaItensMenu_titulo_arrow:hover{
+    cursor: pointer;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+/* Animação */
+
+.ListaItensMenu_lista-enter {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.ListaItensMenu_lista-enter-active {
+    max-height: 500px; /* Ajuste este valor conforme necessário */
+    opacity: 1;
+    transition: max-height 2000ms ease-out, opacity 500ms ease-out;
+}
+
+.ListaItensMenu_lista-exit {
+    max-height: 0px; /* Ajuste este valor conforme necessário */
+    opacity: 1;
+}
+
+.ListaItensMenu_lista-exit-active {
+    max-height: 0px;
+    opacity: 0;
+    transition: max-height 10ms ease-in, opacity 10ms ease-in;
+}

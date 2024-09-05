@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --background-padrao: #F9FAFB;
+    --branco: #FFFFFF;
+
+    --fonte-padrao: 'Jost', sans-serif;
+
+    --cor-menu: #1E2228;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--background-padrao);
+    font-family: var(--fonte-padrao);
+    font-weight: 400;
+    color: black;
+}
+
+.teste1{
+    background-color: var(--branco);
+    height: 50vh;
+}
