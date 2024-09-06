@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export function FormSubmit({ arquivos, valores, imageEndpoint, textEndpoint, baseUrl, children, onSuccess, onError }) {
+export function FormSubmit({ valores, imageEndpoint, textEndpoint, baseUrl, children, onSuccess, onError }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -11,7 +11,6 @@ export function FormSubmit({ arquivos, valores, imageEndpoint, textEndpoint, bas
         setError(null);
 
         console.log(valores)
-        console.log(arquivos)
 
         // Captura os dados do formulário
         const formData = new FormData(event.target);

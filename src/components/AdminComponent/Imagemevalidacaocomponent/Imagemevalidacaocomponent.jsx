@@ -21,7 +21,6 @@ export function Imagemevalidacaocomponent({ nome, MensagemdeErro, minWidth, minH
 
     const handleImageChange = async (event) => {
         const files = event.target.files;
-
         // Verifica se o número de imagens é menor que o mínimo permitido
         if (files.length < (minImages || 0)) {
             setErrorMessage(`Você deve enviar pelo menos ${minImages} imagem(ns).`);

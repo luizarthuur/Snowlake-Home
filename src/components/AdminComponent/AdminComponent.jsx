@@ -13,7 +13,20 @@ export function AdminComponent() {
   const [menuOpen, setMenuOpen] = useState(false); // Controla a abertura do menu no modo mobile
   const [listOpen, setListOpen] = useState(null); // Controla a lista aberta
 
-  const { register } = useForm();
+  const { register, getValues } = useForm();
+
+  const [values, setValues] = useState('');
+
+  const [filesList, setFilesList] = useState(null);
+
+  function HandleValues () {
+    setValues(getValues()) 
+  }
+
+  const HandleFiles = (event) => {
+    setFilesList(event.target.files)
+  }
+
 
   const menuRef = useRef(null); // Referência para a área do menu
 
@@ -79,113 +92,109 @@ function ToggleListOpen(key) {
     {
       key: 'logo',
       titulo: 'Logo',
-      content: (
-        <div className='input_admin'>
-          <h3 className='admin_titulo_input'>Escolha a logo do seu site</h3>
-          <label htmlFor="inputlogo" className="custom-file-upload">
-            <span className="plus-icon">+</span> Escolher Logo
-            <Imagemevalidacaocomponent {...register("inputlogo")} name={'inputlogo'} nome={'inputlogo'} MensagemdeErro={'A imagem deve ter ao menos 128x42 pixels de resolução'} minWidth={128} minHeight={42} required/>
-          </label>
-
-        </div>
-      ),
+      content: [{
+        id: 'logo_upload',
+        type: 'image',
+        label:'Escolha a logo do seu site',
+        component: (
+          <div className='input_admin'>
+            <h3 className='admin_titulo_input'>Escolha a logo do seu site</h3>
+            <label htmlFor="inputlogo" className="custom-file-upload">
+              <span className="plus-icon">+</span> Escolher Logo
+              <Imagemevalidacaocomponent onChange={HandleFiles} {...register("inputlogo")} nome={'inputlogo'} MensagemdeErro={'A imagem deve ter ao menos 128x42 pixels de resolução'} minWidth={128} minHeight={42} required/>
+            </label>
+  
+          </div>
+        ),
+      }]
     },
     {
       key: 'Área de Navegação',
       titulo: 'Área de Navegação',
-      content: (
+      content: [{
+        id: 'nav_main_titulo_principal',
+        type: 'text',
+        label: 'Titulo',
+        component: (
+          <div className='input_admin'>
+            <h3 className='admin_titulo_input'>Escolha o título e subtítulo da sua área de navegação</h3>
+            <label htmlFor="nav_main_titulo_principal">Título</label>
+            <input type="text"  {...register("nav_main_titulo_principal")} id="nav_main_titulo_principal" name="nav_main_titulo_principal" maxLength={100} minLength={8} required placeholder='Digite o Título (Mínimo de 8 caracteres)'/>
+          </div>
+        ),
+      },
+    {
+      id: 'nav_main_subtitulo',
+      type: 'text',
+      label: 'Subtitulo',
+      component: (
         <div className='input_admin'>
-          <h3 className='admin_titulo_input'>Escolha o título e subtítulo da sua área de navegação</h3>
-          <label htmlFor="nav_main_titulo_principal">Título</label>
-          <input type="text" {...register("nav_main_titulo_principal")} id="nav_main_titulo_principal" maxLength={100} minLength={8} required placeholder='Digite o Título (Mínimo de 8 caracteres)'/>
           <label htmlFor="nav_main_subtitulo">Subtítulo</label>
-          <input type="text" {...register("nav_main_subtitulo")} id="nav_main_subtitulo" maxLength={200} required placeholder='Digite o Subtítulo' />
-          <h3 className='admin_titulo_input'>Escolha o papel de parede da sua área de navegação - (Possibilidade de até 4 imagens para fazer um carrossel)</h3>
-          <label htmlFor="papel_parede_Nav" className="custom-file-upload">
-            <span className="plus-icon">+</span> Escolher papel de parede
-            <Imagemevalidacaocomponent {...register("papel_parede_Nav")} name={"papel_parede_Nav"} nome={"papel_parede_Nav"} MensagemdeErro={'As imagens devem ter ao menos 2000x1335 pixels de resolução'} minWidth={2000} minHeight={1335} multiple={true} required/>
-          </label>
-          
+          <input type="text" {...register("nav_main_subtitulo")} id="nav_main_subtitulo" name="nav_main_subtitulo" maxLength={200} required placeholder='Digite o Subtítulo' />        
         </div>
       ),
     },
     {
-        key: 'Conteúdo inicial',
-        titulo: 'Conteúdo inicial',
-        content: (
+      id:'nav_main_imagem',
+      type: 'file',
+      label: 'Papel de parede',
+      component: (
+        <div className='input_admin'>
+          <h3 className='admin_titulo_input'>Escolha o papel de parede da sua área de navegação - (Possibilidade de até 4 imagens para fazer um carrossel)</h3>
+          <label htmlFor="papel_parede_Nav" className="custom-file-upload">
+            <span className="plus-icon">+</span> Escolher papel de parede
+            <Imagemevalidacaocomponent onChange={HandleFiles} {...register("papel_parede_Nav")} nome={"papel_parede_Nav"} MensagemdeErro={'As imagens devem ter ao menos 2000x1335 pixels de resolução'} minWidth={2000} minHeight={1335} multiple={true} required/>
+          </label>
+          
+        </div>
+      ),
+    }
+    ]
+    },
+
+    {
+      key: 'Conteúdo Inicial',
+      titulo: 'Conteúdo Inicial',
+      content: [{
+        id: 'content_section_titulo',
+        type: 'text',
+        label: 'Titulo',
+        component: (
           <div className='input_admin'>
-            <h3 className='admin_titulo_input'>Escolha o título e conteúdo da sua área de conteúdo inicial</h3>
-            <label htmlFor="content_section_titulo">Título</label>
-            <input type="text" {...register("content_section_titulo")} id="content_section_titulo" maxLength={100} minLength={8} required placeholder='Digite o Título (Mínimo de 8 caracteres)'/>
-            <label htmlFor="content_section_conteudo">Conteúdo</label>
-            <input type="text" {...register("content_section_conteudo")} id="content_section_conteudo" maxLength={600} required placeholder='Digite o Conteúdo'/>
-            <h3 className='admin_titulo_input'>Escolha a imagem que ficará próxima do seu conteúdo</h3>
-            <label htmlFor="papel_parede_InitialContent" className="custom-file-upload">
-              <span className="plus-icon">+</span> Escolher imagem
-            <Imagemevalidacaocomponent {...register('papel_parede_InitialContent')} name={'papel_parede_InitialContent'} nome={'papel_parede_InitialContent'} MensagemdeErro={'A imagem deve ter ao menos 550 x 485 pixels de resolução'} minWidth={550} minHeight={485} required/>
-            </label>
-          </div>
-        ),
+          <h3 className='admin_titulo_input'>Escolha o título e conteúdo da sua área de conteúdo inicial</h3>
+          <label htmlFor="content_section_titulo">Título</label>
+          <input type="text" {...register("content_section_titulo")} id="content_section_titulo" maxLength={100} minLength={8} required placeholder='Digite o Título (Mínimo de 8 caracteres)'/>
+        </div>
+        )
       },
       {
-        key: 'Área de Vídeo',
-        titulo: 'Área de Vídeo',
-        content: (
+        id: 'content_section_conteudo',
+        type: 'text',
+        label: 'Conteúdo',
+        component: (
           <div className='input_admin'>
-            <h3 className='admin_titulo_input'>Escolha o título, o link de Referência e o papel de parede da sua área de vídeo</h3>
-            <label htmlFor="video_content_titulo">Título</label>
-            <input type="text" {...register("video_content_titulo")} id="video_content_titulo" maxLength={100} minLength={8} required placeholder='Digite o Título (Mínimo de 8 caracteres)'/>
-            <label htmlFor="video_content_video_link">Link de Referência</label>
-            <input type="URL" {...register("video_content_video_link")} id="video_content_video_link" maxLength={600} required placeholder='Digite o link externo de redirecionamento'/>
-            <h3 className='admin_titulo_input'>Escolha o papel de parede</h3>
-            <label htmlFor="papel_parede_Video" className="custom-file-upload">
-              <span className="plus-icon">+</span> Escolher imagem
-              <Imagemevalidacaocomponent {...register('papel_parede_Video')} name={'papel_parede_Video'} nome={'papel_parede_Video'} MensagemdeErro={'A imagem deve ter ao menos 2000 x 1410 pixels de resolução'} minWidth={2000} minHeight={1410} multiple={false} required/>
-            </label>
-          </div>
-        ),
+          <label htmlFor="content_section_conteudo">Conteúdo</label>
+          <input type="text" {...register("content_section_conteudo")} id="content_section_conteudo" maxLength={600} required placeholder='Digite o Conteúdo'/>
+        </div>
+        )
       },
       {
-        key: 'Carrossel de imagens',
-        titulo: 'Carrossel de imagens',
-        content: (
+        id: 'papel_parede_InitialContent',
+        type: 'file',
+        label: 'Escolha a imagem',
+        component: (
           <div className='input_admin'>
-            <h3 className='admin_titulo_input'>Escolha até 8 imagens para fazer um carrossel de imagens</h3>
-            <h3 className='admin_titulo_input'>Escolha as imagens</h3>
-            <label htmlFor="imagens_carrossel" className="custom-file-upload">
-              <span className="plus-icon">+</span> Escolher imagem
-              <Imagemevalidacaocomponent {...register('imagens_carrossel')} name={'imagens_carrossel'} nome={'imagens_carrossel'} MensagemdeErro={'As imagens devem ter ao menos 150 x 150 pixels de resolução'} minWidth={150} minHeight={150} multiple={true} minImages={5} maxImages={8} required/>
-            </label>
-          </div>
-        ),
-      },
-      {/*{
-        key: 'Carrossel de cards',
-        titulo: 'Carrossel de cards',
-        content: (
-          <div className='input_admin'>
-              <MultipleCarousels required {...register('multiplo_carrossel')}/>
-          </div>
-        ),
-      }*/},
-      {
-        key: 'Área de informações',
-        titulo: 'Área de informações',
-        content: (
-          <div className='input_admin'>
-            <h3 className='admin_titulo_input'>Escolha o título para sua área de informações</h3>
-            <label htmlFor="address_component_titulo">Título</label>
-            <input type="text" {...register("address_component_titulo")} id="address_component_titulo" maxLength={100} minLength={8} required placeholder='Digite o Título (Mínimo de 8 caracteres)'/>
-            <label htmlFor="address_component_endereco_conteudo">Endereço</label>
-            <input type="text" {...register("address_component_endereco_conteudo")} id="address_component_endereco_conteudo" maxLength={600} required placeholder='Digite o seu endereço'/>
-            <label htmlFor="address_component_telefone_conteudo">Telefone</label>
-            <input type="text" {...register("address_component_telefone_conteudo")} id="address_component_telefone_conteudo" maxLength={600} required placeholder='Digite o seu telefone'/>
-            <label htmlFor="address_component_email_conteudo">Email Comercial</label>
-            <input type="text" {...register("address_component_email_conteudo")} id="address_component_email_conteudo" maxLength={600} required placeholder='Digite o seu email comercial'/>
-            
-          </div>
-        ),
+          <h3 className='admin_titulo_input'>Escolha a imagem que ficará próxima do seu conteúdo</h3>
+          <label htmlFor="papel_parede_InitialContent" className="custom-file-upload">
+            <span className="plus-icon">+</span> Escolher imagem
+          <Imagemevalidacaocomponent onChange={HandleFiles} {...register('papel_parede_InitialContent')} name={'papel_parede_InitialContent'} nome={'papel_parede_InitialContent'} MensagemdeErro={'A imagem deve ter ao menos 550 x 485 pixels de resolução'} minWidth={550} minHeight={485} required/>
+          </label>
+        </div>
+        )
       }
+    ]
+    }
+
 
     // Adicione outros itens aqui com a mesma estrutura
   ];
@@ -218,38 +227,41 @@ function ToggleListOpen(key) {
               <span className="material-symbols-outlined" id='inicio_area_admin_cadeado'>lock</span>
             </div>
 
-            <FormSubmit baseUrl="http://localhost:8000/api/v1" imageEndpoint={'/Imagens'} textEndpoint={'/Texto'} onSuccess={handleSuccess} onError={handleError} >
-              {listaDeItens.map(item => (
-                <div key={item.key}>
-                  <div className='item_menu_input_admin'>
-                    <h3 className='titulo_menu_input_admin' onClick={() => ToggleListOpen(item.key)}>{item.titulo}</h3>
-                    <span className="material-symbols-outlined" id='arrow_down_menu_input_admin' onClick={() => ToggleListOpen(item.key)}>
-                      {listOpen === item.key ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
-                    </span>
-                  </div>
-
-                  <CSSTransition
-                    in={listOpen === item.key}
-                    timeout={{
-                      appear: 150,
-                      enter: 150,
-                      exit: 10,
-                    }}
-                    classNames="ListaItensMenu_lista"
-                    unmountOnExit
-                  >
-                    <ul className='ListaItensMenu_lista'>
-                      <li>{item.content}</li>
-                    </ul>
-                  </CSSTransition>
+            <FormSubmit valores = {values} baseUrl="http://localhost:8000/api/v1" imageEndpoint={'/Imagens'} textEndpoint={'/Texto'} onSuccess={handleSuccess} onError={handleError}>
+            {listaDeItens.map(item => (
+              <div key={item.key}>
+                <div className='item_menu_input_admin'>
+                  <h3 className='titulo_menu_input_admin' onClick={() => ToggleListOpen(item.key)}>{item.titulo}</h3>
+                  <span className="material-symbols-outlined" id='arrow_down_menu_input_admin' onClick={() => ToggleListOpen(item.key)}>
+                    {listOpen === item.key ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}
+                  </span>
                 </div>
-              ))}
-              <div className='enviar_dados_div'>
-              <label htmlFor="enviar_dados" className='label_button_enviardados'> Já finalizou? então envie os seus dados!
-              {/*<input  type="submit" value="+ Enviar dados" id='enviar_dados' className='button_enviardados' />*/}
-              </label>
+
+                <CSSTransition
+                  in={listOpen === item.key}
+                  timeout={{
+                    appear: 150,
+                    enter: 150,
+                    exit: 10,
+                  }}
+                  classNames="ListaItensMenu_lista"
+                  unmountOnExit
+                >
+                  <ul className='ListaItensMenu_lista'>
+                    {item.content.map(contentItem => (
+                      <li key={contentItem.id}>{contentItem.component}</li>
+                    ))}
+                  </ul>
+
+                </CSSTransition>
               </div>
-            </FormSubmit>
+            ))}
+            <button onClick={HandleValues}>Teste</button>
+            <div className='enviar_dados_div'>
+              <label htmlFor="enviar_dados" className='label_button_enviardados'> Já finalizou? então envie os seus dados!
+              </label>
+            </div>
+          </FormSubmit>
           </div>
         </div>
       </CSSTransition>
