@@ -16,6 +16,20 @@
     --fonte-alternativa-component-admin: 'Roboto', 'sans-serif';
 }
 
+.inputimagem{
+    display: none;
+}
+
+.mensagem_validacao{
+    color: var(--cor-botao-hover);
+}
+
+.mensagem_validacao_strong{
+    font-size: 25px !important;
+    font-weight: 600;
+    color: var(--cor-botao-hover);
+}
+
 .AdminContainerBotao{
     background-color: transparent;
     border: none;

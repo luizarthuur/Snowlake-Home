@@ -159,7 +159,7 @@ function ToggleListOpen(key) {
           </div>
         ),
       },
-      {/*{
+      {
         key: 'Carrossel de cards',
         titulo: 'Carrossel de cards',
         content: (
@@ -167,7 +167,7 @@ function ToggleListOpen(key) {
               <MultipleCarousels required {...register('multiplo_carrossel')}/>
           </div>
         ),
-      }*/},
+      },
       {
         key: 'Área de informações',
         titulo: 'Área de informações',
@@ -181,8 +181,7 @@ function ToggleListOpen(key) {
             <label htmlFor="address_component_telefone_conteudo">Telefone</label>
             <input type="text" {...register("address_component_telefone_conteudo")} id="address_component_telefone_conteudo" name="address_component_telefone_conteudo" maxLength={600} required placeholder='Digite o seu telefone'/>
             <label htmlFor="address_component_email_conteudo">Email Comercial</label>
-            <input type="text" {...register("address_component_email_conteudo")} id="address_component_email_conteudo" name="address_component_email_conteudo" maxLength={600} required placeholder='Digite o seu email comercial'/>
-            
+            <input type="text" {...register("address_component_email_conteudo")} id="address_component_email_conteudo" name="address_component_email_conteudo" maxLength={600} required placeholder='Digite o seu email comercial'/>          
           </div>
         ),
       },

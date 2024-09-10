@@ -7,19 +7,12 @@ export function MultipleCarousels() {
   const { register, handleSubmit } = useForm();
   const [carousels, setCarousels] = useState([{ id: Date.now(), cards: [{ id: Date.now() }] }]);
 
-  const addNewCarousel = () => {
-    setCarousels([...carousels, { id: Date.now(), cards: [{ id: Date.now() }] }]);
-  };
-
   const addNewCardToCarousel = (carouselIndex) => {
     const newCarousels = [...carousels];
     newCarousels[carouselIndex].cards.push({ id: Date.now() });
     setCarousels(newCarousels);
   };
 
-  const removeCarousel = (carouselId) => {
-    setCarousels(carousels.filter((carousel) => carousel.id !== carouselId));
-  };
 
   const removeCardFromCarousel = (carouselIndex, cardId) => {
     const newCarousels = [...carousels];

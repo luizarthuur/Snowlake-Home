@@ -11,29 +11,8 @@ import { type } from '@testing-library/user-event/dist/type';
 
 export function AdminComponent() {
 
-  //Team Carrossel
-
-  const [carousels, setCarousels] = useState([{ id: Date.now(), cards: [{ id: Date.now() }] }]);
-
-  const addNewCardToCarousel = (carouselIndex) => {
-    const newCarousels = [...carousels];
-    newCarousels[carouselIndex].cards.push({ id: Date.now() });
-    setCarousels(newCarousels);
-  };
-
-
-  const removeCardFromCarousel = (carouselIndex, cardId) => {
-    const newCarousels = [...carousels];
-    newCarousels[carouselIndex].cards = newCarousels[carouselIndex].cards.filter((card) => card.id !== cardId);
-    setCarousels(newCarousels);
-  };
-
-
   const [menuOpen, setMenuOpen] = useState(false); // Controla a abertura do menu no modo mobile
   const [listOpen, setListOpen] = useState(null); // Controla a lista aberta
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const { register, getValues } = useForm();
 
@@ -43,68 +22,9 @@ export function AdminComponent() {
     inputlogo: null,
     papel_parede_Nav: [null],
     papel_parede_InitialContent: null,
-    papel_parede_video: null,
+    papel_parede_video:null,
     imagens_carrossel: [null]
   });
-
-  //values -> texto
-  //files -> imagens
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    if (!files.inputlogo  || !files.papel_parede_Nav || !files.papel_parede_InitialContent || !files.papel_parede_video || !files.imagens_carrossel) {
-      alert('Você não enviou todas as imagens necessárias, por favor preencha corretamente o formulário e envie novamente')
-      return
-    }
-
-
-    const requestBody = {
-      nav_main_content: {
-        nav_main_titulo_principal: getValues('nav_main_titulo_principal'),
-        nav_main_subtitulo: getValues('nav_main_subtitulo')
-      },
-      content_section: {
-        content_section_titulo: getValues('content_section_titulo'),
-        content_section_conteudo: getValues('content_section_conteudo')
-      },
-      video_content: {
-        video_content_titulo: getValues('video_content_titulo'),
-        video_content_video_link: getValues('video_content_video_link')
-      },
-      address_component: {
-        address_component_titulo: getValues('address_component_titulo'),
-        address_component_endereco_conteudo: getValues('address_component_endereco_conteudo'),
-        address_component_telefone_conteudo: getValues('address_component_telefone_conteudo'),
-        address_component_email_conteudo: getValues('address_component_email_conteudo')
-      },
-      
-    };
-
-    if (!requestBody.content_section || !requestBody.nav_main_content || !requestBody.video_content ) {
-      alert('Você não enviou todo o texto necessário, por favor preencha corretamente o formulário e envie novamente')
-    }
-
-
-    // Fazendo a requisição POST
-    fetch('http://localhost:8000/api/v1/Texto', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),  // Enviando o objeto criado
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Sucesso:', data);
-    })
-    .catch((error) => {
-      console.error('Erro:', error);
-    });
-    
-  }  
 
   const HandleFiles = (e) => {
     const { name, files: selectedFiles } = e.target;
@@ -125,43 +45,9 @@ export function AdminComponent() {
       }
     });
   };
-
-  {/*
-
-  const dadosform = {
-
-    nav_main_content: {
-      nav_main_titulo_principal: getValues('nav_main_titulo_principal'),
-      nav_main_subtitulo: getValues('nav_main_subtitulo')
-    },
-
-    content_section: {
-      content_section_titulo: getValues('content_section_titulo'),
-      content_section_conteudo: getValues('content_section_conteudo')
-    },
-
-    video_content: {
-      video_content_titulo: getValues('video_content_titulo'),
-      video_content_link: getValues('video_content_link')
-    },
-
-    info_main_content: {
-      address_component_titulo: getValues('address_component_titulo'),
-      address_component_endereco_conteudo: getValues('address_component_endereco_conteudo'),
-      address_component_telefone_conteudo: getValues('address_component_telefone_conteudo'),
-      address_component_email_conteudo: getValues('address_component_email_conteudo')
-    }
-    
-  }
-    */}
-
-
-
   function HandleValues () {
     setValues(getValues())
     console.log(files) 
-    console.log(values)
-
   }
 
 
@@ -353,7 +239,7 @@ function ToggleListOpen(key) {
         )
       },
     {
-      id: "video_content_video_link",
+      id: "video_content_link",
       type: "text",
       label: "Link Vídeo",
       component: (
@@ -453,7 +339,7 @@ function ToggleListOpen(key) {
       )
     }
     ]
-    },
+    }
 
     // Adicione outros itens aqui com a mesma estrutura
   ];
@@ -486,7 +372,7 @@ function ToggleListOpen(key) {
               <span className="material-symbols-outlined" id='inicio_area_admin_cadeado'>lock</span>
             </div>
 
-          <form action="" onSubmit={handleSubmit}>
+            <FormSubmit valores = {values} baseUrl="http://localhost:8000/api/v1" imageEndpoint={'/Imagens'} textEndpoint={'/Texto'} onSuccess={handleSuccess} onError={handleError}>
             {listaDeItens.map(item => (
               <div key={item.key}>
                 <div className='item_menu_input_admin'>
@@ -515,15 +401,12 @@ function ToggleListOpen(key) {
                 </CSSTransition>
               </div>
             ))}
+            <button onClick={HandleValues}>Teste</button>
             <div className='enviar_dados_div'>
-              <label htmlFor="enviar_dados" className='label_button_enviardados'> Para não haver nenhum erro, apenas envie os dados quando estiver preenchido tudo!
+              <label htmlFor="enviar_dados" className='label_button_enviardados'> Já finalizou? então envie os seus dados!
               </label>
             </div>
-            <button onClick={HandleValues} className='button_enviardados' type="submit" disabled={loading}>
-                {loading ? 'Enviando...' : '+Enviar dados'}
-            </button>
-            {error && <p style={{ color: 'red' }}>Erro: {error.message}</p>}
-          </form>  
+          </FormSubmit>
           </div>
         </div>
       </CSSTransition>

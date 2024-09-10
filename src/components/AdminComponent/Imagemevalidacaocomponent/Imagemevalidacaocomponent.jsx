@@ -2,7 +2,7 @@ import './Imagemevalidacaocomponent.css';
 import { useState } from 'react';
 
 export function Imagemevalidacaocomponent({ nome, MensagemdeErro, minWidth, minHeight, multiple, minImages, maxImages }) {
-    const [errorMessage, setErrorMessage] = useState(''); // Mensagem de erro para a imagem
+    const [errorMessage, setErrorMessage] = useState(''); // Mensagem de erro para a imagem    
 
     const validateImageSize = (file) => {
         return new Promise((resolve, reject) => {
@@ -53,7 +53,6 @@ export function Imagemevalidacaocomponent({ nome, MensagemdeErro, minWidth, minH
                 name={nome}
                 accept=".jpg, .jpeg, .png"
                 required
-                onChange={handleImageChange}
                 multiple={multiple}
             />
             {errorMessage && <p className='error-message'>{errorMessage}</p>}
